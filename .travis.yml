@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 4.2
+- 4.2
 sudo: false
 addons:
   apt:
@@ -11,6 +11,14 @@ addons:
     - g++-4.8
 env:
   matrix:
-    - CXX=g++-4.8
+  - CXX=g++-4.8
 before_script:
 - npm install -g grunt-cli
+deploy:
+  provider: npm
+  email: henri.bergius@iki.fi
+  api_key:
+    secure: Zscn8wD960QNQFSN/aauQRnaApzLMfovW/oiDsyaQypkManJlRsBARh4AVBmr8h9a7k1dz4ECjnAq9zC7Ev4V5jdbNDUAzFocPGdsCmr+8ZQMfvxzp+UPar/6WOWzZNqJxbBuza4NReWehP4oeFm4kxe3wibxhfzFrCsqlkIlkma2OtcdvhTQyQmtc979nW8un4UQo0YBi6qbiTOSIgdmQ/7Bg6h6ZAscyxo/WmG7D/rCYk2SEk303ooHlt1r9IZ3h6Vfoj6fJY47OTbWC264HrZXqrgoOBHMZkdt5NxnjzvTSUw3UyG9U6k45uz2TnpgOyYhjgN34drOBwx0xlnNqFMFxYwDn3SyDq+3+bcAQznBBsnQuLHYqIEx8Km8qR1A/lP6aMLrgOAWJPltg0EuG1fVT7/KASSZFXziZ2lzGcJiD/LZ7FhMglG4PvFVBO9F7ZUOaULVt/NAyb/TNdZvjuZRvcmr1vuxSQsVEDFqrHZXwk3BCczKNdNXZZArXYFV69KhwH/uSGfbN7eRnJC7VBEpLgAJ0B/3sxvPWD6oZ5QfswNR4CckJ+uAt0Wax3aE2iXH84sT1Tcl/JbCKl4nO83VsVGb83SkITZBjJS4+Ul0XSmCJoe8oarm+xNTsHJ6LFch4/Ak3JnjB5+22WpS4ahZuSViG36YCFbFNinbJc=
+  on:
+    tags: true
+    repo: noflo/noflo-subprocess
