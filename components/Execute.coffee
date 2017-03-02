@@ -39,14 +39,12 @@ exports.getComponent = ->
 
   noflo.helpers.WirePattern c,
     in: 'command'
-    out: ['out', 'error']
+    out: 'out'
     forwardGroups: true
     async: true
-  , (command, groups, outPorts, callback) ->
+  , (command, groups, out, callback) ->
     runCmd command, (err, val) ->
-      if err
-        outPorts.error.send err
-        do callback
-        return
-      outPorts.out.send val
+      return callback err if err
+      out.send val
       do callback
+    return
