@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/GabiThume/noflo-subprocess#readme",
   "dependencies": {
-    "noflo": "0.x >= 0.5"
+    "noflo": "0.8.1"
   },
   "devDependencies": {
     "chai": "~3.5.0",
