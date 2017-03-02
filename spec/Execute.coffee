@@ -9,14 +9,18 @@ describe 'Execute component', ->
   out = null
   error = null
 
-  beforeEach ->
+  before ->
     c = Execute.getComponent()
     command = noflo.internalSocket.createSocket()
+    c.inPorts.command.attach command
+  beforeEach ->
     out = noflo.internalSocket.createSocket()
     error = noflo.internalSocket.createSocket()
-    c.inPorts.command.attach command
     c.outPorts.out.attach out
     c.outPorts.error.attach error
+  afterEach ->
+    c.outPorts.out.detach out
+    c.outPorts.error.detach error
 
   describe 'when instantiated', ->
     it 'should have input ports', ->
@@ -30,11 +34,11 @@ describe 'Execute component', ->
     result = null
     cmd = 'ls -lah'
 
-    before (done) ->
+    beforeEach (done) ->
       groups = []
       out.on 'begingroup', (grp) ->
         groups.push grp
-      out.once "data", (data) ->
+      out.on "data", (data) ->
         result = data
         done()
       error.on 'data', (data) ->
@@ -50,42 +54,46 @@ describe 'Execute component', ->
     groups = []
     result = null
     cmd = 'asdasd'
+    err = null
 
-    before (done) ->
+    beforeEach (done) ->
       groups = []
-      out.on 'begingroup', (grp) ->
-        groups.push grp
-      out.once "data", (data) ->
+      out.on "data", (data) ->
         result = data
         done data
+      error.on 'begingroup', (grp) ->
+        groups.push grp
       error.on 'data', (data) ->
+        err = data
         done()
       command.beginGroup 'send-command'
       command.send cmd
 
     it 'should return an error', ->
       chai.expect(result).to.not.exist
-      chai.expect(error).to.exist
+      chai.expect(err).to.exist
       chai.expect(groups).to.include 'send-command'
 
   describe 'when command sent do not exist', ->
     groups = []
     result = null
     cmd = 'tar -xvzf foo'
+    err = null
 
-    before (done) ->
+    beforeEach (done) ->
       groups = []
-      out.on 'begingroup', (grp) ->
-        groups.push grp
-      out.once "data", (data) ->
+      out.on "data", (data) ->
         result = data
         done data
+      error.on 'begingroup', (grp) ->
+        groups.push grp
       error.on 'data', (data) ->
+        err = data
         done()
       command.beginGroup 'send-command'
       command.send cmd
 
     it 'should return an error', ->
       chai.expect(result).to.not.exist
-      chai.expect(error).to.exist
+      chai.expect(err).to.exist
       chai.expect(groups).to.include 'send-command'
