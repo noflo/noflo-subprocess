@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "chai": "~4.1.0",
-    "coffeelint": "^1.11.1",
+    "coffeelint": "^2.0.0",
     "grunt": "~1.0.1",
     "grunt-coffeelint": "~0.0.13",
     "grunt-contrib-coffee": "~1.0.0",
