@@ -33,7 +33,7 @@
     "grunt-contrib-coffee": "~1.0.0",
     "grunt-mocha-test": "^0.13.2",
     "grunt-noflo-manifest": "~0.1.11",
-    "mocha": "~3.4.0"
+    "mocha": "~4.0.1"
   },
   "noflo": {
     "components": {
