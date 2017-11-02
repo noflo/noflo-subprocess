@@ -4,7 +4,8 @@
   "description": "NoFlo library to execute commands as subprocess",
   "main": "index.js",
   "scripts": {
-    "test": "grunt test"
+    "pretest": "./node_modules/.bin/coffeelint -r components",
+    "test": "mocha --require coffeescript/register --require coffee-script/register -R spec -t 2000 spec/*.coffee"
   },
   "repository": {
     "type": "git",
@@ -26,18 +27,9 @@
     "noflo": "0.x >= 0.7"
   },
   "devDependencies": {
-    "chai": "~4.1.0",
-    "coffeelint": "^1.11.1",
-    "grunt": "~1.0.1",
-    "grunt-coffeelint": "~0.0.13",
-    "grunt-contrib-coffee": "~1.0.0",
-    "grunt-mocha-test": "^0.13.2",
-    "grunt-noflo-manifest": "~0.1.11",
-    "mocha": "~4.0.1"
-  },
-  "noflo": {
-    "components": {
-      "Execute": "components/Execute.coffee"
-    }
+    "chai": "^4.1.0",
+    "coffeescript": "^2.0.2",
+    "coffeelint": "^2.0.7",
+    "mocha": "^4.0.1"
   }
 }
