@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "./node_modules/.bin/coffeelint -r components",
-    "test": "mocha --require coffeescript/register --require coffee-script/register -R spec -t 2000 spec/*.coffee"
+    "test": "mocha --require coffeescript/register -R spec -t 2000 spec/*.coffee"
   },
   "repository": {
     "type": "git",
