@@ -42,6 +42,9 @@ exports.getComponent = () => {
     datatype: 'object',
     required: false,
   });
+  c.forwardBrackets = {
+    command: ['out', 'error'],
+  };
 
   return c.process((input, output) => {
     if (!input.hasData('command')) {
