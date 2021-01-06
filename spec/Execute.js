@@ -8,7 +8,7 @@ describe('Execute component', () => {
   let error = null;
 
   before(() => {
-    const loader = new noflo.ComponentLoader(baseDir);
+    const loader = new noflo.ComponentLoader(process.cwd());
     return loader.load('subprocess/Execute')
       .then((instance) => {
         c = instance;
