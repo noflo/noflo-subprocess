@@ -1,6 +1,6 @@
 {
   "name": "noflo-subprocess",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "NoFlo library to execute commands as subprocess",
   "scripts": {
     "pretest": "eslint .",
