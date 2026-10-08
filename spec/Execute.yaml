@@ -1,0 +1,27 @@
+topic: subprocess/Execute
+cases:
+  - name: running a command
+    assertion: should send the standard output of the command
+    inputs:
+      command: printf hello
+    expect:
+      out:
+        equals: hello
+  - name: nonexistent command
+    assertion: should send an error to the error port
+    inputs:
+      command: noflo-subprocess-nonexistent-command-xyz
+    expect:
+      error:
+        path: $.message
+        contains: not found
+  - name: timeout
+    assertion: should kill long-running commands and report a timeout error
+    timeout: 5000
+    inputs:
+      timeout: 100
+      command: sleep 5
+    expect:
+      error:
+        path: $.message
+        equals: Command sleep 5 timed out

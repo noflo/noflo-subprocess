@@ -1,4 +1,2 @@
 /node_modules/
-/components/*/
-/spec/*.xml
-package-lock.json
+/fbp.json

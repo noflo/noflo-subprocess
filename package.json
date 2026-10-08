@@ -1,14 +1,19 @@
 {
   "name": "noflo-subprocess",
-  "version": "0.3.0",
   "description": "NoFlo library to execute commands as subprocess",
-  "scripts": {
-    "pretest": "eslint .",
-    "test": "mocha -R spec -t 2000 spec/*.js"
-  },
+  "version": "0.3.0",
+  "author": "Gabriela Thumé <gabithume@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/noflo/noflo-subprocess.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "noflo": {
+    "icon": "smile-o"
   },
   "keywords": [
     "noflo",
@@ -16,22 +21,32 @@
     "exec",
     "subprocess"
   ],
-  "author": "Gabriela Thumé <gabithume@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/noflo/noflo-subprocess/issues"
-  },
-  "homepage": "https://github.com/noflo/noflo-subprocess#readme",
+  "files": [
+    "components/",
+    "spec/",
+    "test/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
   "dependencies": {
-    "noflo": "^1.0.0"
+    "@noflo/noflo": "^2.0.0-alpha.0"
   },
   "devDependencies": {
-    "chai": "^4.1.0",
-    "eslint": "^7.17.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-chai": "0.0.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-mocha": "^8.0.0",
-    "mocha": "^8.2.1"
+    "@biomejs/biome": "^2.0.0",
+    "@noflo/fbp-spec-runner": "^2.0.0-alpha.0",
+    "@noflo/loader-node": "^2.0.0-alpha.0",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "lint": "npx @biomejs/biome check --use-editorconfig=true components/ spec/ test/",
+    "format": "npx @biomejs/biome check --use-editorconfig=true --write components/ spec/ test/",
+    "types": "tsc -p tsconfig.json",
+    "test": "npm run types && npm run lint && npm run test:spec && npm run test:node",
+    "test:spec": "node \"$(node -p \"require.resolve('@noflo/fbp-spec-runner/src/cli.js')\")\" spec/",
+    "test:node": "node --test test/*.test.js",
+    "test:bun": "bun test test/*.test.js",
+    "test:deno": "deno test --allow-all --no-check test/*.test.js"
   }
 }
