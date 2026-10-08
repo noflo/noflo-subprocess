@@ -1,7 +1,7 @@
 {
-  "name": "noflo-subprocess",
+  "name": "@noflo/subprocess",
   "description": "NoFlo library to execute commands as subprocess",
-  "version": "0.3.0",
+  "version": "2.0.0-alpha.1",
   "author": "Gabriela Thumé <gabithume@gmail.com>",
   "repository": {
     "type": "git",
